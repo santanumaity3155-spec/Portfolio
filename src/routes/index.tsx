@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { ParticleField } from "@/components/ParticleField";
 import { Typewriter } from "@/components/Typewriter";
+import { Dialog, DialogPortal, DialogOverlay, DialogContent, DialogClose } from "@/components/ui/dialog";
 import profileImg from "@/assets/Santanu.png";
 import emailjs from "@emailjs/browser";
 
@@ -584,34 +585,194 @@ function Projects() {
 }
 
 /* ---------------- CERTIFICATIONS ---------------- */
-const CERTS = [
-  { title: "Artificial Intelligence & Machine Learning Internship", org: "Kodacy (in association with SPACE)", icon: Brain },
-  { title: "Blockchain and Big Data & Data Science Training", org: "NIELIT Kolkata", icon: Award },
+const certificates = [
+  {
+    id: "1",
+    title: "Exploring Artificial Intelligence",
+    issuer: "IBM SkillsBuild",
+    date: "07 May 2026",
+    preview: "/certificates/previews/ibm-exploring-artificial-intelligence.jpg",
+    file: null, // No PDF available
+    credentialId: "ALM-COURSE_3825247",
+    category: "AI & Machine Learning"
+  },
+  {
+    id: "2",
+    title: "Navigating AI Tools: A Selection Framework",
+    issuer: "IBM SkillsBuild",
+    date: "28 June 2026",
+    preview: "/certificates/previews/ibm-navigating-ai-tools-selection-framework.jpg",
+    file: "/certificates/pdf/ibm-navigating-ai-tools-selection-framework.pdf",
+    credentialId: "ALM-COURSE_4068818",
+    category: "AI & Machine Learning"
+  },
+  {
+    id: "3",
+    title: "Machine Learning Using Python",
+    issuer: "IBM SkillsBuild",
+    date: "12 February 2026",
+    preview: "/certificates/previews/ibm-machine-learning-using-python.jpg",
+    file: "/certificates/pdf/ibm-machine-learning-using-python.pdf",
+    credentialId: "9838026",
+    category: "AI & Machine Learning"
+  },
+  {
+    id: "4",
+    title: "Exploring Data Transformation with Google Cloud",
+    issuer: "Google Cloud",
+    date: "08 March 2026",
+    preview: "/certificates/previews/google-cloud-exploring-data-transformation.jpg",
+    file: "/certificates/pdf/google-cloud-exploring-data-transformation.pdf",
+    credentialId: "9933929",
+    category: "Cloud"
+  },
+  {
+    id: "5",
+    title: "AWS Application Migration Service (AWS-MGN) – A Technical Introduction",
+    issuer: "AWS",
+    date: "11 February 2026",
+    preview: "/certificates/previews/aws-application-migration-service.jpg",
+    file: "/certificates/pdf/aws-application-migration-service.pdf",
+    credentialId: "9832166",
+    category: "Cloud"
+  },
+  {
+    id: "6",
+    title: "AI Tools & ChatGPT Workshop",
+    issuer: "be10x",
+    date: "15 March 2026",
+    preview: "/certificates/previews/be10x-ai-tools-chatgpt-workshop.jpg",
+    file: "/certificates/pdf/be10x-ai-tools-chatgpt-workshop.pdf",
+    credentialId: null,
+    category: "Developer Tools"
+  },
+  {
+    id: "7",
+    title: "What Is Generative AI?",
+    issuer: "LinkedIn Learning",
+    date: "01 July 2026",
+    preview: "/certificates/previews/linkedin-what-is-generative-ai.jpg",
+    file: "/certificates/pdf/linkedin-what-is-generative-ai.pdf",
+    credentialId: "7e8646dfaba0528b38aa56add2162091b16f4fc4faadc443d40283194586195d",
+    category: "AI & Machine Learning"
+  },
+  {
+    id: "8",
+    title: "Your Top AI Questions Answered: AI Literacy for Everyone",
+    issuer: "LinkedIn Learning",
+    date: "01 July 2026",
+    preview: "/certificates/previews/linkedin-top-ai-questions-answered.jpg",
+    file: "/certificates/pdf/linkedin-top-ai-questions-answered.pdf",
+    credentialId: "6868c0742d1e86ec42d93c615e3cc950c0b7619fa7701fbe8c5dd00285662cf2",
+    category: "AI & Machine Learning"
+  },
+  {
+    id: "9",
+    title: "GenAI Powered Data Analytics Job Simulation",
+    issuer: "Tata",
+    platform: "Forage",
+    date: "06 August 2025",
+    preview: "/certificates/previews/forage-tata-genai-data-analytics.jpg",
+    file: "/certificates/pdf/forage-tata-genai-data-analytics.pdf",
+    credentialId: null,
+    category: "Data Analytics"
+  },
+  {
+    id: "10",
+    title: "Data Analytics Job Simulation",
+    issuer: "Deloitte",
+    platform: "Forage",
+    date: "12 February 2026",
+    preview: "/certificates/previews/forage-deloitte-data-analytics.jpg",
+    file: "/certificates/pdf/forage-deloitte-data-analytics.pdf",
+    credentialId: null,
+    category: "Data Analytics"
+  },
+  {
+    id: "11",
+    title: "GitHub for Open Standards Development (LFD140)",
+    issuer: "The Linux Foundation",
+    date: "11 February 2026",
+    preview: "/certificates/previews/linux-foundation-github-open-standards.jpg",
+    file: "/certificates/pdf/linux-foundation-github-open-standards.pdf",
+    credentialId: "LF-2hfrz6of8m",
+    category: "Developer Tools"
+  }
 ];
 
 function Certifications() {
+  const [selectedCertificate, setSelectedCertificate] = useState<typeof certificates[number] | null>(null);
+
   return (
     <section id="certifications" className="relative py-24">
       <div className="mx-auto max-w-7xl px-4">
-        <SectionHeader tag="Certifications" title={<>Credentials & <span className="text-gradient">training</span></>} />
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {CERTS.map((c) => (
-            <div key={c.title} className="group relative overflow-hidden rounded-3xl glass p-7 transition hover:-translate-y-1 hover:glow-blue">
-              <div className="flex items-start gap-4">
-                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-mix)] text-background">
-                  <c.icon className="h-7 w-7" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-display text-lg font-semibold">{c.title}</h3>
-                  <div className="mt-1 text-sm text-[var(--neon)]">{c.org}</div>
-                  <div className="mt-3 inline-flex items-center gap-1.5 rounded-full glass px-3 py-1 text-xs font-mono text-[var(--ember)]">
-                    <Award className="h-3.5 w-3.5" /> Verified
-                  </div>
-                </div>
+        <SectionHeader tag="Certifications" title={<>Certificates</>} sub="Professional certifications, courses, and industry learning achievements." />
+        <div className="mt-14 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {certificates.map((cert) => (
+            <div key={cert.id} className="group relative overflow-hidden rounded-3xl glass p-6 transition hover:-translate-y-1 hover:glow-blue">
+              <div className="mb-4">
+                <img src={cert.preview} alt={`${cert.title} certificate preview`} className="w-full h-48 object-contain rounded-xl transition transform hover:scale-105" />
+              </div>
+              <div className="space-y-3">
+                <div className="text-xs font-mono text-[var(--neon)] uppercase tracking-wider">{cert.issuer}</div>
+                <h3 className="font-display text-lg font-semibold">{cert.title}</h3>
+                <div className="text-sm text-muted-foreground">{cert.date}</div>
+                <button
+                  onClick={() => setSelectedCertificate(cert)}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-primary)] px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02]"
+                >
+                  SHOW CERTIFICATE <ArrowRight className="h-3 w-3" />
+                </button>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Certificate Modal */}
+        {selectedCertificate && (
+          <Dialog>
+            <DialogContent className="w-full max-w-[500px]">
+              <div className="space-y-6">
+                <div className="relative">
+                  <img src={selectedCertificate.preview} alt={`${selectedCertificate.title} certificate`} className="w-full h-64 object-contain rounded-xl" />
+                </div>
+                <div className="text-center space-y-3">
+                  <div className="text-xs font-mono text-[var(--neon)] uppercase tracking-wider">{selectedCertificate.issuer}</div>
+                  <h2 className="font-display text-xl font-bold">{selectedCertificate.title}</h2>
+                  <div className="text-sm text-muted-foreground">{selectedCertificate.date}</div>
+                  {selectedCertificate.credentialId && (
+                    <div className="text-sm font-mono text-muted-foreground">
+                      Credential ID: {selectedCertificate.credentialId}
+                    </div>
+                  )}
+                  {selectedCertificate.platform && (
+                    <div className="text-sm text-muted-foreground">
+                      Platform: {selectedCertificate.platform}
+                    </div>
+                  )}
+                  <div className="flex justify-center">
+                    {selectedCertificate.file ? (
+                      <a
+                        href={selectedCertificate.file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-primary)] px-5 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02]"
+                      >
+                        OPEN ORIGINAL CERTIFICATE <ArrowRight className="h-3 w-3" />
+                      </a>
+                    ) : (
+                      <button
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-accent)] px-5 py-2 text-xs font-semibold text-accent-foreground transition hover:scale-[1.02]"
+                      >
+                        NO PDF AVAILABLE
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
     </section>
   );
