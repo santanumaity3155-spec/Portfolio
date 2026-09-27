@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { ParticleField } from "@/components/ParticleField";
 import { Typewriter } from "@/components/Typewriter";
-import { Dialog, DialogPortal, DialogOverlay, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { CertificateModal } from "@/components/CertificateModal";
 import profileImg from "@/assets/Santanu.png";
 import emailjs from "@emailjs/browser";
 
@@ -592,7 +592,8 @@ const certificates = [
     issuer: "IBM SkillsBuild",
     date: "07 May 2026",
     preview: "/certificates/previews/ibm-exploring-artificial-intelligence.jpg",
-    file: null, // No PDF available
+    file: null,
+    downloadName: null,
     credentialId: "ALM-COURSE_3825247",
     category: "AI & Machine Learning"
   },
@@ -603,6 +604,7 @@ const certificates = [
     date: "28 June 2026",
     preview: "/certificates/previews/ibm-navigating-ai-tools-selection-framework.jpg",
     file: "/certificates/pdf/ibm-navigating-ai-tools-selection-framework.pdf",
+    downloadName: "IBM_Navigating_AI_Tools.pdf",
     credentialId: "ALM-COURSE_4068818",
     category: "AI & Machine Learning"
   },
@@ -613,6 +615,7 @@ const certificates = [
     date: "12 February 2026",
     preview: "/certificates/previews/ibm-machine-learning-using-python.jpg",
     file: "/certificates/pdf/ibm-machine-learning-using-python.pdf",
+    downloadName: "Machine_Learning_Using_Python.pdf",
     credentialId: "9838026",
     category: "AI & Machine Learning"
   },
@@ -623,6 +626,7 @@ const certificates = [
     date: "08 March 2026",
     preview: "/certificates/previews/google-cloud-exploring-data-transformation.jpg",
     file: "/certificates/pdf/google-cloud-exploring-data-transformation.pdf",
+    downloadName: "Google_Cloud_Data_Transformation.pdf",
     credentialId: "9933929",
     category: "Cloud"
   },
@@ -633,6 +637,7 @@ const certificates = [
     date: "11 February 2026",
     preview: "/certificates/previews/aws-application-migration-service.jpg",
     file: "/certificates/pdf/aws-application-migration-service.pdf",
+    downloadName: "AWS_MGN_Technical_Introduction.pdf",
     credentialId: "9832166",
     category: "Cloud"
   },
@@ -643,6 +648,7 @@ const certificates = [
     date: "15 March 2026",
     preview: "/certificates/previews/be10x-ai-tools-chatgpt-workshop.jpg",
     file: "/certificates/pdf/be10x-ai-tools-chatgpt-workshop.pdf",
+    downloadName: "be10x_AI_Tools_Workshop.pdf",
     credentialId: null,
     category: "Developer Tools"
   },
@@ -653,6 +659,7 @@ const certificates = [
     date: "01 July 2026",
     preview: "/certificates/previews/linkedin-what-is-generative-ai.jpg",
     file: "/certificates/pdf/linkedin-what-is-generative-ai.pdf",
+    downloadName: "LinkedIn_What_Is_Generative_AI.pdf",
     credentialId: "7e8646dfaba0528b38aa56add2162091b16f4fc4faadc443d40283194586195d",
     category: "AI & Machine Learning"
   },
@@ -663,6 +670,7 @@ const certificates = [
     date: "01 July 2026",
     preview: "/certificates/previews/linkedin-top-ai-questions-answered.jpg",
     file: "/certificates/pdf/linkedin-top-ai-questions-answered.pdf",
+    downloadName: "LinkedIn_AI_Literacy.pdf",
     credentialId: "6868c0742d1e86ec42d93c615e3cc950c0b7619fa7701fbe8c5dd00285662cf2",
     category: "AI & Machine Learning"
   },
@@ -674,6 +682,7 @@ const certificates = [
     date: "06 August 2025",
     preview: "/certificates/previews/forage-tata-genai-data-analytics.jpg",
     file: "/certificates/pdf/forage-tata-genai-data-analytics.pdf",
+    downloadName: "Tata_GenAI_Data_Analytics_Job_Simulation.pdf",
     credentialId: null,
     category: "Data Analytics"
   },
@@ -685,6 +694,7 @@ const certificates = [
     date: "12 February 2026",
     preview: "/certificates/previews/forage-deloitte-data-analytics.jpg",
     file: "/certificates/pdf/forage-deloitte-data-analytics.pdf",
+    downloadName: "Deloitte_Data_Analytics_Job_Simulation.pdf",
     credentialId: null,
     category: "Data Analytics"
   },
@@ -695,6 +705,7 @@ const certificates = [
     date: "11 February 2026",
     preview: "/certificates/previews/linux-foundation-github-open-standards.jpg",
     file: "/certificates/pdf/linux-foundation-github-open-standards.pdf",
+    downloadName: "Linux_Foundation_GitHub_LFD140.pdf",
     credentialId: "LF-2hfrz6of8m",
     category: "Developer Tools"
   }
@@ -710,19 +721,48 @@ function Certifications() {
         <div className="mt-14 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {certificates.map((cert) => (
             <div key={cert.id} className="group relative overflow-hidden rounded-3xl glass p-6 transition hover:-translate-y-1 hover:glow-blue">
-              <div className="mb-4">
-                <img src={cert.preview} alt={`${cert.title} certificate preview`} className="w-full h-48 object-contain rounded-xl transition transform hover:scale-105" />
+              {/* Controlled partial preview container - full certificate is NOT readable from card */}
+              <div className="relative mb-4 h-[180px] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40">
+                <img
+                  src={cert.preview}
+                  alt={`${cert.title} preview`}
+                  className="h-full w-full object-cover object-top opacity-85 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-95"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--background,#0b0f17)]/90 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute top-3 right-3 rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-muted-foreground backdrop-blur-md">
+                  Preview
+                </div>
               </div>
+
               <div className="space-y-3">
                 <div className="text-xs font-mono text-[var(--neon)] uppercase tracking-wider">{cert.issuer}</div>
                 <h3 className="font-display text-lg font-semibold">{cert.title}</h3>
                 <div className="text-sm text-muted-foreground">{cert.date}</div>
-                <button
-                  onClick={() => setSelectedCertificate(cert)}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-primary)] px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02]"
-                >
-                  SHOW CERTIFICATE <ArrowRight className="h-3 w-3" />
-                </button>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCertificate(cert)}
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-primary)] px-4 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02] cursor-pointer"
+                  >
+                    SHOW
+                  </button>
+                  {cert.file ? (
+                    <a
+                      href={cert.file}
+                      download={cert.downloadName}
+                      className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)]/20 bg-[image:var(--gradient-accent)]/20 px-4 py-2 text-xs font-semibold text-accent-foreground transition hover:scale-[1.02] hover:border-[var(--border)]/10 hover:bg-[image:var(--gradient-accent)]/30"
+                    >
+                      DOWNLOAD
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-accent)]/20 px-4 py-2 text-xs font-semibold text-accent-foreground cursor-not-allowed"
+                    >
+                      DOWNLOAD
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -730,48 +770,10 @@ function Certifications() {
 
         {/* Certificate Modal */}
         {selectedCertificate && (
-          <Dialog>
-            <DialogContent className="w-full max-w-[500px]">
-              <div className="space-y-6">
-                <div className="relative">
-                  <img src={selectedCertificate.preview} alt={`${selectedCertificate.title} certificate`} className="w-full h-64 object-contain rounded-xl" />
-                </div>
-                <div className="text-center space-y-3">
-                  <div className="text-xs font-mono text-[var(--neon)] uppercase tracking-wider">{selectedCertificate.issuer}</div>
-                  <h2 className="font-display text-xl font-bold">{selectedCertificate.title}</h2>
-                  <div className="text-sm text-muted-foreground">{selectedCertificate.date}</div>
-                  {selectedCertificate.credentialId && (
-                    <div className="text-sm font-mono text-muted-foreground">
-                      Credential ID: {selectedCertificate.credentialId}
-                    </div>
-                  )}
-                  {selectedCertificate.platform && (
-                    <div className="text-sm text-muted-foreground">
-                      Platform: {selectedCertificate.platform}
-                    </div>
-                  )}
-                  <div className="flex justify-center">
-                    {selectedCertificate.file ? (
-                      <a
-                        href={selectedCertificate.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-primary)] px-5 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02]"
-                      >
-                        OPEN ORIGINAL CERTIFICATE <ArrowRight className="h-3 w-3" />
-                      </a>
-                    ) : (
-                      <button
-                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[image:var(--gradient-accent)] px-5 py-2 text-xs font-semibold text-accent-foreground transition hover:scale-[1.02]"
-                      >
-                        NO PDF AVAILABLE
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+          <CertificateModal
+            certificate={selectedCertificate}
+            onClose={() => setSelectedCertificate(null)}
+          />
         )}
       </div>
     </section>
