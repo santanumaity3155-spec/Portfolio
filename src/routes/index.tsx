@@ -9,6 +9,7 @@ import {
 import { ParticleField } from "@/components/ParticleField";
 import { Typewriter } from "@/components/Typewriter";
 import { CertificateModal } from "@/components/CertificateModal";
+import { ExperienceCertificateModal, type ExperienceItem } from "@/components/ExperienceCertificateModal";
 import profileImg from "@/assets/Santanu.png";
 import emailjs from "@emailjs/browser";
 
@@ -365,64 +366,304 @@ function Education() {
 }
 
 /* ---------------- EXPERIENCE ---------------- */
-const EXPERIENCE = [
+const EXPERIENCES: ExperienceItem[] = [
   {
+    id: "kodacy",
     role: "AI & Machine Learning Intern",
-    org: "Kodacy (in association with SPACE)",
-    icon: Brain,
-    color: "var(--neon)",
+    organization: "Kodacy (in association with SPACE)",
+    domain: "AI & Machine Learning",
+    duration: "30 Days Virtual",
+    dateRange: "Completed: 18 Mar 2026",
     points: [
       "Practical AI and Machine Learning implementation",
       "Model development and experimentation",
       "Data-driven problem solving",
       "Hands-on AI project exposure",
     ],
+    icon: Brain,
+    color: "var(--neon)",
+    certificatePreview: "/certificates/previews/kodacy-ai-ml-internship.jpg",
+    certificateFile: "/certificates/pdf/kodacy-ai-ml-internship.pdf",
+    downloadName: "Kodacy_AI_ML_Internship_Certificate.pdf",
+    certificateId: "2182d5816f942f63",
   },
   {
+    id: "nielit",
     role: "Blockchain, Big Data & Data Science Training",
-    org: "NIELIT Kolkata",
-    icon: Database,
-    color: "var(--ember)",
+    organization: "NIELIT Kolkata",
+    domain: "Blockchain & Data Science",
+    duration: "Bootcamp & Internship",
+    dateRange: "20 Jun 2025 — 28 Jun 2025",
     points: [
       "Blockchain Technology fundamentals",
       "Big Data concepts and tools",
       "Data Science methodologies",
       "Data processing and analytics",
     ],
+    icon: Database,
+    color: "var(--ember)",
+    certificatePreview: "/certificates/previews/nielit-blockchain-bigdata-datascience-internship.jpg",
+    certificateFile: "/certificates/pdf/nielit-blockchain-bigdata-datascience-internship.pdf",
+    downloadName: "NIELIT_Blockchain_BigData_DataScience_Internship.pdf",
+    certificateId: "NIELIT/KOLKATA/FSP/Intern/BDA&BCMP/2506/448",
+    additionalCertificates: [
+      {
+        label: "Bootcamp Certificate",
+        preview: "/certificates/previews/nielit-bigdata-datascience-bootcamp.jpg",
+        file: "/certificates/pdf/nielit-bigdata-datascience-bootcamp.pdf",
+        downloadName: "NIELIT_BigData_DataScience_Bootcamp.pdf",
+        certificateId: "FSP/BCMP/NIELIT/KOLKATA/BDA03/2502/448",
+      },
+    ],
+  },
+  {
+    id: "infotact",
+    role: "Data Science & ML Intern",
+    organization: "Infotact Solutions",
+    domain: "Data Science & ML",
+    duration: "2 months",
+    dateRange: "05 Jul 2026 — 05 Sep 2026",
+    points: [
+      "Data Science & Machine Learning internship experience",
+      "Applied data analysis and ML concepts",
+      "Worked on practical project-based tasks",
+      "Developed hands-on technical skills",
+    ],
+    icon: Brain,
+    color: "var(--neon)",
+    certificatePreview: "/certificates/previews/infotact-data-science-ml-internship.jpg",
+    certificateFile: "/certificates/pdf/infotact-data-science-ml-internship.pdf",
+    downloadName: "Infotact_Data_Science_ML_Internship.pdf",
+    certificateId: "a5b91acdb38d",
+    employeeId: "198bccaa9131",
+    linkedinUrl: "https://www.linkedin.com/in/santanu-maity-8934b8372/edit/forms/position/2992911187/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_position%3BF9OPsxivSxON6QG3ENOyrA%3D%3D",
+    additionalCertificates: [
+      {
+        label: "Training Certificate",
+        preview: "/certificates/previews/infotact-data-science-ml-training.jpg",
+        file: "/certificates/pdf/infotact-data-science-ml-training.pdf",
+        downloadName: "Infotact_Data_Science_ML_Training.pdf",
+        certificateId: "a5b91acdb38d",
+      },
+    ],
+  },
+  {
+    id: "codomax",
+    role: "Full-Stack Development Intern",
+    organization: "Codomax Digital Solutions",
+    domain: "Full-Stack Development",
+    duration: "2 weeks",
+    dateRange: "2 Weeks Virtual Internship • Issue Date: 30 Jul 2026",
+    points: [
+      "Full-Stack Development internship",
+      "Worked with frontend and backend development concepts",
+      "Built/implemented web application functionality",
+      "Gained practical software development experience",
+    ],
+    icon: Code2,
+    color: "var(--ember)",
+    certificatePreview: "/certificates/previews/codomax-full-stack-development-internship.jpg",
+    certificateFile: "/certificates/pdf/codomax-full-stack-development-internship.pdf",
+    downloadName: "Codomax_Full_Stack_Development_Internship.pdf",
+    certificateId: "CDM/CERT/JULY26730799",
+    linkedinUrl: "https://www.linkedin.com/in/santanu-maity-8934b8372/edit/forms/position/2983898143/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_position%3BBpUez1YTTPK6XRFGaYQ8%2Fw%3D%3D",
+  },
+  {
+    id: "bluestock",
+    role: "Data Analyst Intern",
+    organization: "Bluestock Fintech",
+    domain: "Financial Analytics",
+    duration: "2 months",
+    dateRange: "20 Jun 2026 — 20 Aug 2026",
+    points: [
+      "Data Analyst internship at Bluestock Fintech",
+      "Worked on financial data analysis and analytics",
+      "Contributed to data-driven project workflows",
+      "Worked with financial datasets, KPIs, and reporting",
+    ],
+    icon: BarChart3,
+    color: "var(--neon)",
+    certificatePreview: "/certificates/previews/bluestock-data-analyst-internship.jpg",
+    certificateFile: "/certificates/pdf/bluestock-data-analyst-internship.pdf",
+    downloadName: "Bluestock_Data_Analyst_Internship.pdf",
+    certificateId: "BFDA75274",
+    projectManager: "Yash Kale",
+    linkedinUrl: "https://www.linkedin.com/in/santanu-maity-8934b8372/edit/forms/position/2951189383/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_position%3BBpUez1YTTPK6XRFGaYQ8%2Fw%3D%3D",
   },
 ];
 
 function Experience() {
+  const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
+  const [downloadMenuId, setDownloadMenuId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = () => setDownloadMenuId(null);
+    if (downloadMenuId) {
+      window.addEventListener("click", handleOutsideClick);
+      return () => window.removeEventListener("click", handleOutsideClick);
+    }
+  }, [downloadMenuId]);
+
   return (
     <section id="experience" className="relative py-24">
       <div className="mx-auto max-w-7xl px-4">
         <SectionHeader tag="Experience & Training" title={<>Where I <span className="text-gradient">grew</span></>} />
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {EXPERIENCE.map((x) => (
-            <div key={x.role} className="group relative overflow-hidden rounded-3xl glass p-7 transition hover:-translate-y-1">
-              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-20 blur-3xl transition group-hover:opacity-40" style={{ background: `radial-gradient(circle, ${x.color}, transparent 70%)` }} />
+        <div className="mt-14 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {EXPERIENCES.map((x) => (
+            <div
+              key={x.id}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl glass p-7 transition hover:-translate-y-1 hover:glow-blue"
+            >
+              <div
+                className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-20 blur-3xl transition group-hover:opacity-40 pointer-events-none"
+                style={{ background: `radial-gradient(circle, ${x.color}, transparent 70%)` }}
+              />
+
               <div className="relative">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl glass-strong" style={{ color: x.color as string }}>
+                {/* Header with Icon & Role */}
+                <div className="flex items-start gap-3">
+                  <div
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-xl glass-strong shadow-sm"
+                    style={{ color: x.color as string }}
+                  >
                     <x.icon className="h-6 w-6" />
                   </div>
-                  <div>
-                    <h3 className="font-display text-xl font-semibold">{x.role}</h3>
-                    <div className="text-sm text-muted-foreground">{x.org}</div>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-lg sm:text-xl font-semibold leading-snug">{x.role}</h3>
+                    <div className="text-sm font-medium text-foreground/80 mt-0.5">{x.organization}</div>
                   </div>
                 </div>
+
+                {/* Timeline badge & Domain (if available) */}
+                {(x.dateRange || x.domain) && (
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    {x.dateRange && (
+                      <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-muted-foreground">
+                        {x.dateRange}
+                      </span>
+                    )}
+                    {x.domain && (
+                      <span
+                        className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-mono uppercase tracking-wider font-semibold"
+                        style={{
+                          color: x.color as string,
+                          backgroundColor: `color-mix(in srgb, ${x.color} 12%, transparent)`,
+                        }}
+                      >
+                        {x.domain}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Bullet Points */}
                 <ul className="mt-5 space-y-2">
                   {x.points.map((p) => (
                     <li key={p} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: x.color as string }} />
-                      {p}
+                      <span>{p}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+
+              {/* Action Buttons: SHOW, DOWNLOAD, and optional LINKEDIN */}
+              {x.certificateFile && (
+                <div className="relative mt-7 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedExperience(x)}
+                    aria-label={`Show ${x.organization} certificate`}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-[image:var(--gradient-primary)] px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:scale-[1.02] cursor-pointer shadow-sm"
+                  >
+                    <Award className="h-3.5 w-3.5" />
+                    <span>SHOW</span>
+                  </button>
+
+                  {x.id === "nielit" ? (
+                    <div className="relative flex-1">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDownloadMenuId(downloadMenuId === x.id ? null : x.id);
+                        }}
+                        aria-label="Download NIELIT certificates"
+                        className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-[var(--border)]/20 bg-[image:var(--gradient-accent)]/20 px-3 py-2 text-xs font-semibold text-accent-foreground transition hover:scale-[1.02] hover:border-[var(--border)]/10 hover:bg-[image:var(--gradient-accent)]/30 text-center cursor-pointer"
+                      >
+                        <Download className="h-3.5 w-3.5" />
+                        <span>DOWNLOAD</span>
+                      </button>
+
+                      {downloadMenuId === x.id && (
+                        <div
+                          className="absolute bottom-full left-0 mb-2 w-max max-w-[280px] rounded-xl border border-white/15 bg-[var(--background,#0b0f17)]/95 p-2 shadow-2xl backdrop-blur-xl z-30 animate-in fade-in zoom-in-95 duration-150"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground px-2 py-1 border-b border-white/10 mb-1">
+                            Select Certificate
+                          </div>
+                          <a
+                            href={x.certificateFile}
+                            download={x.downloadName}
+                            onClick={() => setDownloadMenuId(null)}
+                            className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground/90 transition hover:bg-white/10 hover:text-foreground"
+                          >
+                            <Download className="h-3 w-3 text-[var(--neon,#38bdf8)] shrink-0" />
+                            <span>Download Internship Certificate</span>
+                          </a>
+                          {x.additionalCertificates?.map((doc) => (
+                            <a
+                              key={doc.label}
+                              href={doc.file}
+                              download={doc.downloadName}
+                              onClick={() => setDownloadMenuId(null)}
+                              className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground/90 transition hover:bg-white/10 hover:text-foreground"
+                            >
+                              <Download className="h-3 w-3 text-[var(--ember,#f59e0b)] shrink-0" />
+                              <span>Download {doc.label}</span>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={x.certificateFile}
+                      download={x.downloadName}
+                      aria-label={`Download ${x.organization} certificate`}
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-[var(--border)]/20 bg-[image:var(--gradient-accent)]/20 px-3 py-2 text-xs font-semibold text-accent-foreground transition hover:scale-[1.02] hover:border-[var(--border)]/10 hover:bg-[image:var(--gradient-accent)]/30 text-center"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      <span>DOWNLOAD</span>
+                    </a>
+                  )}
+
+                  {x.linkedinUrl && (
+                    <a
+                      href={x.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${x.organization} experience on LinkedIn`}
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#0077b5]/40 bg-[#0077b5]/15 text-[#38bdf8] px-3 py-2 text-xs font-semibold transition hover:bg-[#0077b5]/25 hover:scale-[1.02] text-center"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" />
+                      <span>LINKEDIN</span>
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
+
+        {/* Certificate Modal */}
+        {selectedExperience && (
+          <ExperienceCertificateModal
+            experience={selectedExperience}
+            onClose={() => setSelectedExperience(null)}
+          />
+        )}
       </div>
     </section>
   );
